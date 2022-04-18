@@ -37,4 +37,4 @@ springdoc:
 
 logging:
   level:
-    com.com.workspace: debug
+    com.workspace: debug
