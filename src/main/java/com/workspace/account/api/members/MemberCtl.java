@@ -23,13 +23,13 @@ import java.util.List;
 @RestController
 @Slf4j
 public class MemberCtl {
-    MemberSerice memberSerice;
+    MemberService memberSerice;
     MemberRepo memberRepo;
     DepartmentRepo departmentRepo;
 
     CorpCardRepo cardRepo;
 
-    public MemberCtl(MemberSerice memberSerice, MemberRepo memberRepo, DepartmentRepo departmentRepo, CorpCardRepo cardRepo) {
+    public MemberCtl(MemberService memberSerice, MemberRepo memberRepo, DepartmentRepo departmentRepo, CorpCardRepo cardRepo) {
         this.memberSerice = memberSerice;
         this.memberRepo = memberRepo;
         this.departmentRepo = departmentRepo;

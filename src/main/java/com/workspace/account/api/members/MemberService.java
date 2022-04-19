@@ -7,15 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
-public class MemberSerice {
+public class MemberService {
 
     private final MemberRepo memberRepo;
 
-    public MemberSerice(MemberRepo memberRepo) {
+    public MemberService(MemberRepo memberRepo) {
         this.memberRepo = memberRepo;
     }
 
