@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 
@@ -58,7 +59,11 @@ public class MemberCtl {
                 .department(dept1)
                 .build();
 
-        memberRepo.saveAll(Arrays.asList(member, member1));
+        Member member2 = Member.builder()
+                .name("김승현")
+                .build();
+
+        memberRepo.saveAll(Arrays.asList(member, member1, member2));
 
         CorpCard card1 = CorpCard.builder().alias("테스트 카드1").build();
         CorpCard card2 = CorpCard.builder().alias("테스트 카드2").build();
@@ -76,10 +81,11 @@ public class MemberCtl {
         return ResponseEntity.ok(new LoginResponse());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{memberId}")
     @Operation(summary = "사용자 조회")
-    public ResponseEntity<MemberViewDto> getMember(@PathVariable("id") long id){
-        return ResponseEntity.ok(null);
+    public ResponseEntity<MemberViewDto> getMember(@Valid  @PathVariable("memberId") long memberId){
+        MemberViewDto memberViewDto = memberSerice.getMember(memberId);
+        return ResponseEntity.ok(memberViewDto);
     }
 
     @GetMapping("")

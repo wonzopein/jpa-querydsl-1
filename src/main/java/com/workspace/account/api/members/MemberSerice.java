@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -54,4 +55,14 @@ public class MemberSerice {
         return memberRepo.findAllDto();
     }
 
+    @Transactional(readOnly = true)
+    public MemberViewDto getMember(long memberId) {
+        Member member = memberRepo.findById(memberId).orElse(null);
+
+        if(member == null){
+            return null;
+        }else{
+            return new MemberViewDto(member);
+        }
+    }
 }

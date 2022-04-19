@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 import static com.workspace.account.api.corpcard.QCorpCard.*;
+import static com.workspace.account.api.department.QDepartment.department;
 import static com.workspace.account.api.members.QMember.member;
 import static com.querydsl.core.group.GroupBy.groupBy;
 import static com.querydsl.core.group.GroupBy.list;
@@ -49,6 +50,7 @@ public class MemberCustomRepoImpl implements MemberCustomRepo {
 //                        )));
         return queryFactory
                 .from(member)
+                .leftJoin(member.department, department)
                 .leftJoin(member.corpCards, corpCard)
                 .transform(
                         groupBy(member.id)
